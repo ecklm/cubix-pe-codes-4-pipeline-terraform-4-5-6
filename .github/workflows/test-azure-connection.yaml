@@ -5,7 +5,7 @@ name: Test Azure connection
   workflow_dispatch:
 
 permissions:
-  contents: read
+  # Needed for Azure ODIC Login
   id-token: write
 
 jobs:
