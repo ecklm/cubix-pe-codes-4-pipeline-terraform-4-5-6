@@ -40,6 +40,9 @@ jobs:
       - name: Terraform plan
         run: terraform plan -input=false -out=tfplan
 
+      - name: Check formatting
+        run: terraform fmt -check
+
       - name: Archive Terraform plan
         run: tar -czf terraform-plan.tar.gz .terraform .terraform.lock.hcl tfplan
 
