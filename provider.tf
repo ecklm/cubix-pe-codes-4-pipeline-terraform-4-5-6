@@ -18,6 +18,10 @@ terraform {
       source  = "hashicorp/azuread"
       version = "3.9.0"
     }
+    helm = {
+      source  = "hashicorp/helm"
+      version = "3.2.0"
+    }
   }
 }
 
@@ -29,4 +33,23 @@ provider "azurerm" {
 
 provider "azuread" {
   tenant_id = "8820d9af-b533-4848-9bf3-ebf24d29d140"
+}
+
+provider "helm" {
+  kubernetes = {
+    host                   = azurerm_kubernetes_cluster.aks.kube_config[0].host
+    cluster_ca_certificate = base64decode(azurerm_kubernetes_cluster.aks.kube_config[0].cluster_ca_certificate)
+
+    exec = {
+      api_version = "client.authentication.k8s.io/v1beta1"
+      command     = "kubelogin"
+      args = [
+        "get-token",
+        "--login",
+        "azurecli",
+        "--server-id",
+        "6dae42f8-4368-4678-94ff-3960e28e3630", # Azure public cloud
+      ]
+    }
+  }
 }
