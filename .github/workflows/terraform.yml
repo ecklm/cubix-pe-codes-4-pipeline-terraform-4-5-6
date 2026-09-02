@@ -80,5 +80,8 @@ jobs:
       - name: Restore Terraform plan
         run: tar -xzf terraform-plan.tar.gz
 
+      - name: Install Azure kubelogin
+        uses: azure/use-kubelogin@v1
+
       - name: Terraform apply
         run: terraform apply -input=false -auto-approve tfplan
