@@ -25,6 +25,6 @@ resource "helm_release" "traefik" {
     }
   ]
 
-  # atomic = true
-  # cleanup_on_fail = true
+  atomic          = true
+  cleanup_on_fail = true
 }
