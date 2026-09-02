@@ -82,6 +82,8 @@ jobs:
 
       - name: Install Azure kubelogin
         uses: azure/use-kubelogin@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Terraform apply
         run: terraform apply -input=false -auto-approve tfplan
