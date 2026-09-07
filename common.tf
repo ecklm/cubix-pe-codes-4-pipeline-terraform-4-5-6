@@ -25,3 +25,14 @@ locals {
 }
 
 data "azurerm_client_config" "current" {}
+
+resource "terraform_data" "workspace_guard" {
+  input = var.env_name
+
+  lifecycle {
+    precondition {
+      condition     = terraform.workspace == var.env_name
+      error_message = "Selected workspace must match env_name. Run terraform workspace select ${var.env_name} before using ${var.env_name}.tfvars."
+    }
+  }
+}
