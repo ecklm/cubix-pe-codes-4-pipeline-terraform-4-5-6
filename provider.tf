@@ -6,7 +6,7 @@ terraform {
     use_azuread_auth     = true
     storage_account_name = "platencbecklm"
     container_name       = "tfstate"
-    key                  = "project-x-sbx.tfstate"
+    key                  = "terraform.tfstate"
   }
 
   required_providers {
