@@ -14,6 +14,10 @@ terraform {
       source  = "hashicorp/azurerm"
       version = "5.3.0"
     }
+    azuread = {
+      source  = "hashicorp/azuread"
+      version = "3.9.0"
+    }
   }
 }
 
@@ -21,4 +25,8 @@ provider "azurerm" {
   features {}
   subscription_id = "fba39c62-2b48-482e-8377-d811aa355544"
   tenant_id       = "8820d9af-b533-4848-9bf3-ebf24d29d140"
+}
+
+provider "azuread" {
+  tenant_id = "8820d9af-b533-4848-9bf3-ebf24d29d140"
 }
